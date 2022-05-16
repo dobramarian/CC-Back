@@ -8,6 +8,7 @@ const {
   translateText,
 } = require("../utils/translateFunctions");
 const { sendMail } = require("../utils/mailFunctions");
+const { latestConvertTo } = require("../utils/exchangeFunctions")
 
 //GET ALL
 router.get("/", (req, res) => {
@@ -22,6 +23,20 @@ router.get("/", (req, res) => {
       });
     });
   });
+
+  //GET ALL UAH
+router.get("/totalUAH", (req, res) => {
+  connection.query("SELECT SUM(amountUKR) as total From donations", (err, results) => {
+    if (err) {
+      console.log(err);
+      return res.send(err);
+    }
+
+    return res.json({
+      data: results,
+    });
+  });
+});
 
   //INSERT
   router.post("/", (req, res) => {
@@ -60,7 +75,7 @@ router.get("/", (req, res) => {
           // send bad request error
           return res.status(400).send("Bad request. Missing parametres.");
       }
-      const queryString = `SELECT * FROM donations WHERE entryID = ${mysql.escape(id)}`;
+      const queryString = `SELECT * FROM donations WHERE ID = ${mysql.escape(id)}`;
       connection.query(queryString, (err, results) => {
           if (err) {
               return res.send(err);
@@ -83,7 +98,7 @@ router.get("/", (req, res) => {
           // send bad request error
           return res.status(400).send("Bad request. Missing parametres.");
       }
-      const queryString = `DELETE FROM donations WHERE entryID = ${mysql.escape(id)}`;
+      const queryString = `DELETE FROM donations WHERE ID = ${mysql.escape(id)}`;
       connection.query(queryString, (err, results) => {
           if (err) {
               return res.send(err);
@@ -127,7 +142,7 @@ router.get("/", (req, res) => {
   }
   );
 
-  router.post("/foreign", async (req, res) => {
+  router.post("/donate", async (req, res) => {
     const { senderName,amount,currency,messageContent} =
         req.body;
 
@@ -146,37 +161,43 @@ router.get("/", (req, res) => {
       return res.status(400).send("Invalid Currency");
   }
 
-    let translationData = {};
+    let donateData = {};
 
     try {
-      let textToTranslate = senderName + 'have donated ' + amount + ' ' + currency + ' with the message: ' + messageContent
-            const translatedText = await translateText(
-              textToTranslate,
-                "uk"
-            );
-            translationData.textUKR = translatedText[0];
-
-        sendMail(
-            'donateukraine@yopmail.com',
-            'dobramarian18@stud.ase.ro',
-            `${senderName} have donated`,
-            translationData.textUKR + 'ENGLISH: ' + textToTranslate,
-        );
-
-        sendMail(
-          'dobramarian18@stud.ase.ro',
-          'donateukraine@yopmail.com',
-          'THANK YOU FOR DONATING!',
-          `THANK YOU FOR DONATING TO SAVEUKRAINE`
+      const translatedText = await translateText(
+        messageContent,
+          "uk"
       );
 
+      latestConvertTo(currency,"UAH").then(result => {
+        let exchangeRate = result.rates['UAH']
+        donateData.amountUKR = Math.round(((amount * exchangeRate) + Number.EPSILON) * 100) / 100
+
+        let textUKR = senderName + ' пожертвували ' + donateData.amountUKR + ' UAH ';
+        donateData.messageContentUKR = translatedText[0];
+
+    sendMail(
+        'donateukraine@yopmail.com',
+        'dobramarian18@stud.ase.ro',
+        `${senderName} пожертвували`,
+        textUKR + 'з повідомленням: ' + donateData.messageContentUKR,
+    );
+
+    sendMail(
+      'dobramarian18@stud.ase.ro',
+      'donateukraine@yopmail.com',
+      'THANK YOU FOR DONATING TO SAVEUKRAINE',
+      `THANK YOU ${senderName} FOR donating ${amount} ${currency} that means you contribute our cause with ${donateData.amountUKR} UAH`,
+  );
+
         connection.query(
-            `INSERT INTO donations (senderName, messageContent, amount, currency, messageContentUKR) values (${mysql.escape(
+            `INSERT INTO donations (senderName, messageContent, amount, currency, messageContentUKR, amountUKR) values (${mysql.escape(
                 senderName
             )}, ${mysql.escape(messageContent)}
             , ${mysql.escape(amount)}
             , ${mysql.escape(currency)}
-            , ${mysql.escape(translationData.textUKR)}
+            , ${mysql.escape(donateData.messageContentUKR)}
+            , ${mysql.escape(donateData.amountUKR)}
             )`,
             (err, results) => {
                 if (err) {
@@ -185,10 +206,11 @@ router.get("/", (req, res) => {
                 }
 
                 return res.json({
-                    translationData,
+                    donateData,
                 });
             }
         );
+          });
     } catch (err) {
         console.log(err);
         return res.send(err);

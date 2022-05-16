@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "phrasal-catwalk-350000",
+  "private_key_id": "401735328e79cd09a69956aad90d68242e43bc2c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCu5wWt3wnTuf2M\nlU3UU0+WM5EeADaXkguVxjb7lsZbtnSbBfGOGyMUAyzy03Xi8R+pI/1422BcJ/ki\nvMJcAOR0Kadcp5KOve/5mBpRweWOhHmRU6pVXmRJl1U120S9TVThlLtOZ8l1Q9Lf\n2hudVzzCdF1CdSMz6BwgB7+OtHnHfi/B9HzDzoXZEHKikvy/ptKrWqlndbJJ1bVt\n+yTXKGj6v+kGD14/UzNIiWT5COSTnhmEmj+nPC7xvybqxwqJWv9Jy2vQYQoCoF3C\nKjYKEXEh+JzOFzEKPUTiR1T1/Hat8Mjv7XdRwh8G54Nj6jTRZViaA+ZWPPLKIkpi\ndZ2JaSivAgMBAAECggEAEpnrVrST3Pq45oyyfFRn8HeHhYNMSw5zQPiVvGgqrHJZ\nMGuPZyensWctDp5CuWIfleOH/6SFOQffTTx6B0LpCRms/QOtaJT2wrrUgcF3YpLg\nQv587Rte2xzHKTUquF9TGbKxwQL0wA34jWoq6a7vfVbW3EyM8+ZJp3Zrfwfes8Kg\ntx2pi9fBbXJQKdsw1txBo0WnJ7iUXkTGJjcbc7bEy+vT/kKKHn9Hjhd9v0AmLEQV\n+BBVWLrZLN5CbbXWLwT9KTDDbG+FnBc1e7zih7jznyo24GSK9PfmF2P9WT4tEET7\n+cxDDVRdL5Epn41Y6zwfLa5/KUFnLSHEmU3M50ucMQKBgQDlDN3EaIuvDfzRg5aI\nrGZFab7MebNtvofgWUyn9agRS/mGyE2LZK7c95S0KEY+BSfwj+IXfRZc60s/wt/b\nSkyOZ8UDetBqo9mnKSQi/GlXAX0FogaLJo2ciz3/aGDApsTxc5loOleiuN6eHopQ\ncdiA7VTEGJDVhSMbqXkiQE87KwKBgQDDezCzKL9zNsZwjy4DBZ9LPDLzIs4XVib1\nOArDS+7zdgrsQ9Wkr0AjlH+a5di1hs/9dqemi9bbXV+6WQlYpR6YUrY+ICBgps7h\n+fluC4uf45emWwabsl1Yl08XgnXLroGOzqpp+T8Nm0ynPxhTtrTJzFs20XLNLlZQ\nLhApHp+2jQKBgARHIT0x1qoGUNp44q7ayW4yc2XOQBOko1UFVfEtHV51VMu3ofsg\nfkOSPCzBM86kugI8LbTSmUBTBKzELvohgRyHw541BP943+/HTO16WV1Ooc8hH44p\nwitSTm4evO/cLYF070CLFmfrm/zIBT1LYwfFZvfinZHfUrCJkcGaAeDRAoGBAJ10\nOMHWbH8s+6HmcjVU7f33u0JEIqSBbFfQkDrGiu3ngtzTtt4zmwINtsrZoDh3IkkS\nre9ka+e9ykGbPf/84CvpU4mu7uVq9vDmHJcbDZf4Bkqkvynh/XZCSh6xopgxM4IH\nzRQXA0a+dHuyQrILVIvG4yHAiyvhyvxCXhoA5LxxAoGBAKov851yOmjx9EMSPTM7\nmY4HZbQYMpOchggfwp0X7mQ7OfEjwi8kWGINF6f8qVvxk9F7RwgbJp1Okmjg++kQ\n7AUAKFStkI4sJFTgkoacJwrQ813A2IC3LqF9xUCbMSX9JaduK9y5u8BffmawcVhv\nluoCdq5P+Y+C12b62KaTLC0d\n-----END PRIVATE KEY-----\n",
+  "client_email": "cc-translate-usage@phrasal-catwalk-350000.iam.gserviceaccount.com",
+  "client_id": "109665877519866921288",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cc-translate-usage%40phrasal-catwalk-350000.iam.gserviceaccount.com"
+}
