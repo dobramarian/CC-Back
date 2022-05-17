@@ -3,7 +3,8 @@
 DOBRA MARIAN
 Grupa 1117
 
-LINK GIT :https://github.com/dobramarian/CC-Back
+LINK GIT BACK-END :https://github.com/dobramarian/CC-Back
+LINK GIT FRONT-END: https://github.com/dobramarian/CC-Front
 
 LINK HEROKU: https://radiant-harbor-80078.herokuapp.com/
 
